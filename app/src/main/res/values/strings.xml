@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Meme</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="memegram">MemeGram</string>
+    <string name="welcome">Welcome</string>
+    <string name="login">LogIn</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
 </resources>
