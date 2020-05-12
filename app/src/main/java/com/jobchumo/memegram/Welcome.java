@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class Home extends AppCompatActivity {
+public class Welcome extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,11 +16,11 @@ public class Home extends AppCompatActivity {
 
     public void Login(View view) {
         //finish();
-        startActivity(new Intent(Home.this, Login.class));
+        startActivity(new Intent(Welcome.this, Login.class));
     }
 
     public void Sign_up(View view) {
         //finish()
-        startActivity(new Intent(Home.this, SignUp.class));
+        startActivity(new Intent(Welcome.this, SignUp.class));
     }
 }
