@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ProfileFragment">
 
     <TextView
         android:id="@+id/MemeG"
@@ -12,14 +12,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/heavy"
-        android:text="MemeGram"
+        android:text="@string/memegram"
         android:textColor="@color/grey"
-        android:textSize="40dp"/>
+        android:textSize="40sp"/>
 
     <TextView
         android:id="@+id/profile"
-        android:text="Profile"
-        android:textSize="20dp"
+        android:text="@string/profile"
+        android:textSize="20sp"
         android:textColor="@color/grey"
         android:fontFamily="@font/light"
         android:layout_centerHorizontal="true"
@@ -46,7 +46,8 @@
 
     <EditText
         android:id="@+id/fullname"
-        android:hint="Full Name"
+        android:hint="@string/full_name"
+        android:inputType="text"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/profilename"
         android:layout_marginTop="15dp"
@@ -81,7 +82,7 @@
         android:layout_width="240dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        android:text="Update Profile"
+        android:text="@string/update"
         android:textAllCaps="false"
         android:layout_below="@+id/pass_word"
         android:layout_marginTop="30dp"

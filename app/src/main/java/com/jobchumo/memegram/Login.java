@@ -32,6 +32,9 @@ public class Login extends AppCompatActivity {
             Toast.makeText(Login.this, "Empty fields!! \nPlease Enter all your details", Toast.LENGTH_SHORT).show();
             return;
         }
+        else {
+            startActivity(new Intent(Login.this, MainActivity.class));
+        }
 
     }
 
