@@ -5,11 +5,17 @@
         android:title="@string/home"
         android:icon="@drawable/homebutton"/>
     <item
-        android:id="@+id/nav_profile"
-        android:title="@string/profile"
-        android:icon="@drawable/profilebutton"/>
-    <item
         android:id="@+id/nav_search"
         android:title="@string/search"
         android:icon="@drawable/searchbutton"/>
+    <item
+        android:id="@+id/nav_upload"
+        android:title="@string/add_meme"
+        android:icon="@drawable/addmeme"/>
+    <item
+        android:id="@+id/nav_profile"
+        android:title="@string/profile"
+        android:icon="@drawable/profilebutton"/>
+
+
 </menu>

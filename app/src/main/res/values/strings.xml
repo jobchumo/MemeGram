@@ -10,4 +10,6 @@
     <string name="search">Search</string>
     <string name="update">Update Profile</string>
     <string name="full_name">Full Name</string>
+    <string name="add_meme">Add Meme</string>
+    <string name="upload_meme_fragment">Upload Meme Fragment</string>
 </resources>
