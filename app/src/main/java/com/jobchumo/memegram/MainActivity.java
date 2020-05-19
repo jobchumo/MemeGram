@@ -9,6 +9,8 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -18,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+        ArrayList<ItemPosts> memeposts = new ArrayList<>();
+        memeposts.add(new ItemPosts(R.drawable.nhajicpn26c21, "CJKIPU", "TCYL TLYS"));
+        memeposts.add(new ItemPosts(R.drawable.pokemon, "JCHUMO27", "NYSM"));
+        memeposts.add(new ItemPosts(R.drawable.nhajicpn26c21, "CJ2701", "JDI"));
 
     }
 

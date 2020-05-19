@@ -91,6 +91,7 @@
         android:layout_centerHorizontal="true"
         android:text="@string/update"
         android:textAllCaps="false"
+        android:onClick="Update"
         android:layout_below="@+id/pass_word"
         android:layout_marginTop="30dp"
         android:background="@drawable/button"
