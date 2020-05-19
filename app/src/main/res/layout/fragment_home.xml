@@ -3,9 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Home"/>
+        android:padding="4dp"
+        android:scrollbars="vertical"
+        android:background="@color/lightgrey"/>
+
 
 </RelativeLayout>

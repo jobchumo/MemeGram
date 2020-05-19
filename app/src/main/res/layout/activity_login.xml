@@ -24,7 +24,7 @@
         android:layout_marginTop="125dp"
         android:fontFamily="@font/light"
         android:layout_centerHorizontal="true"
-        android:text="Log In"
+        android:text="@string/log_in"
         android:textColor="@color/grey"
         android:textSize="25sp"
         android:alpha="0.5"/>
@@ -36,8 +36,9 @@
         android:ems="10"
         android:layout_below="@+id/logi"
         android:layout_marginTop="40dp"
+        android:fontFamily="@font/light"
         android:inputType="textEmailAddress"
-        android:hint="Email Address"
+        android:hint="@string/email_address"
         android:background="@drawable/input_field"
         android:layout_centerHorizontal="true"/>
 
@@ -46,12 +47,13 @@
         android:layout_width="300dp"
         android:layout_height="43dp"
         android:ems="10"
+        android:fontFamily="@font/light"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/emailaddress"
         android:layout_centerHorizontal="true"
         android:inputType="textPassword"
         android:background="@drawable/input_field"
-        android:hint="Password"/>
+        android:hint="@string/password"/>
 
     <Button
         android:id="@+id/loginb"
@@ -73,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="15dp"
         android:fontFamily="@font/light"
@@ -89,10 +91,9 @@
         android:fontFamily="@font/light"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/textView2"
-        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
         android:onClick="Sign_up"
         android:text="@string/sign_up"
-        android:layout_marginRight="2dp"
         android:textColor="@color/red"
         android:textSize="20sp" />
 

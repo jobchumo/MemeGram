@@ -32,10 +32,6 @@ public class MainActivity extends AppCompatActivity {
                             selectedFrag = new HomeFragment();
                             break;
 
-                        case R.id.nav_search:
-                            selectedFrag = new SearchFragment();
-                            break;
-
                         case R.id.nav_upload:
                             selectedFrag = new UploadFragment();
                             break;

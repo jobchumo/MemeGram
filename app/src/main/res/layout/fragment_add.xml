@@ -5,10 +5,74 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/addmeme"
-        android:text="@string/upload_meme_fragment"
+        android:id="@+id/MemeG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/heavy"
+        android:text="@string/memegram"
+        android:textColor="@color/grey"
+        android:textSize="40sp"/>
+
+    <TextView
+        android:id="@+id/uploadmeme"
+        android:text="@string/upload_meme"
+        android:textSize="20sp"
+        android:textColor="@color/grey"
+        android:fontFamily="@font/light"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/MemeG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+    <ImageView
+        android:id="@+id/postmeme"
+        android:layout_below="@+id/uploadmeme"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pokemon"
+        android:adjustViewBounds="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"/>
+
+    <TextView
+        android:id="@+id/choosephoto"
+        android:textSize="20sp"
+        android:layout_below="@+id/postmeme"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/heavy"
+        android:text="@string/choose_photo"/>
+
+    <EditText
+        android:id="@+id/desc"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/choosephoto"
+        android:fontFamily="@font/light"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:background="@drawable/inputfield_caption"
+        android:hint="@string/caption" />
+
+    <Button
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/post"
+        android:textAllCaps="false"
+        android:layout_below="@+id/desc"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button"
+        android:textSize="16sp"
+        android:fontFamily="@font/light"
+        android:textColor="@color/white"/>
 
 </RelativeLayout>

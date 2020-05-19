@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/heavy"
         android:text="@string/memegram"
         android:textColor="@color/grey"
@@ -38,6 +38,9 @@
 
     <TextView
         android:id="@+id/profilename"
+        android:textSize="20sp"
+        android:textColor="@color/grey"
+        android:fontFamily="@font/light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageview"
@@ -52,14 +55,17 @@
         android:layout_below="@+id/profilename"
         android:layout_marginTop="15dp"
         android:layout_width="300dp"
+        android:fontFamily="@font/light"
         android:layout_height="43dp"
         android:background="@drawable/input_field"/>
 
     <EditText
         android:id="@+id/user_name"
-        android:hint="Username"
+        android:hint="@string/username"
+        android:inputType="text"
         android:layout_below="@+id/fullname"
         android:layout_width="300dp"
+        android:fontFamily="@font/light"
         android:layout_height="43dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
@@ -71,12 +77,13 @@
         android:layout_width="300dp"
         android:layout_height="43dp"
         android:ems="10"
+        android:fontFamily="@font/light"
         android:layout_below="@+id/user_name"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:inputType="textPassword"
         android:background="@drawable/input_field"
-        android:hint="Password"/>
+        android:hint="@string/password"/>
 
     <Button
         android:layout_width="240dp"
