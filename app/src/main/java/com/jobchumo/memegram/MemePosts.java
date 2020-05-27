@@ -1,11 +1,11 @@
 package com.jobchumo.memegram;
 
-public class ItemPosts {
+public class MemePosts {
     private int mImageResource;
     private String mUsername;
     private String mCaption;
 
-    public ItemPosts(int mImageResource, String mUsername, String mCaption) {
+    public MemePosts(int mImageResource, String mUsername, String mCaption) {
         this.mImageResource = mImageResource;
         this.mUsername = mUsername;
         this.mCaption = mCaption;
@@ -22,5 +22,4 @@ public class ItemPosts {
     public String getmCaption() {
         return mCaption;
     }
-
 }

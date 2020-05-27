@@ -28,13 +28,13 @@ public class Login extends AppCompatActivity {
         String email = emaili.getText().toString().trim();
         String pas = passwo.getText().toString().trim();
 
-        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(pas)) {
-            Toast.makeText(Login.this, "Empty fields!! \nPlease Enter all your details", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        else {
+        //if (TextUtils.isEmpty(email) || TextUtils.isEmpty(pas)) {
+            //Toast.makeText(Login.this, "Empty fields!! \nPlease Enter all your details", Toast.LENGTH_SHORT).show();
+          //  return;
+        //}
+        //else {
             startActivity(new Intent(Login.this, MainActivity.class));
-        }
+        //}
 
     }
 

@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
-    android:layout_margin="20dp">
+    android:layout_margin="10dp">
     
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,7 +16,8 @@
             android:text="Username"
             android:textColor="@color/grey"
             android:fontFamily="@font/heavy"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"/>
@@ -26,17 +27,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/userpost"
+            android:layout_marginTop="12dp"
+            android:adjustViewBounds="true"/>
+
+        <ImageView
+            android:id="@+id/icon_like"
+            android:layout_below="@id/postmeme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/nhajicpn26c21"/>
+            android:layout_marginStart="10dp"
+            android:src="@drawable/like_icon"/>
+
+        <ImageView
+            android:id="@+id/icon_comment"
+            android:layout_below="@id/postmeme"
+            android:layout_toEndOf="@id/icon_like"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/comment_icon"/>
 
         <TextView
             android:id="@+id/caption"
             android:text="Caption"
             android:textColor="@color/grey"
             android:fontFamily="@font/light"
-            android:layout_below="@+id/postmeme"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_below="@+id/icon_comment"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"/>
