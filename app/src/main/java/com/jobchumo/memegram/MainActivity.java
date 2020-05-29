@@ -3,7 +3,6 @@ package com.jobchumo.memegram;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,10 +12,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    protected RecyclerView recyclerView;
-    protected RecyclerView.Adapter adapter;
-    protected RecyclerView.LayoutManager layoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
                             selectedFrag = new HomeFragment();
                             break;
 
+                        case R.id.nav_search:
+                            selectedFrag = new SearchFragment();
+                            break;
+
                         case R.id.nav_upload:
                             selectedFrag = new UploadFragment();
                             break;
@@ -46,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.nav_profile:
                             selectedFrag = new ProfileFragment();
                             break;
+
                     }
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, selectedFrag).commit();

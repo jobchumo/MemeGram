@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Login extends AppCompatActivity {
     protected EditText emaili, passwo;
-    protected ProgressBar progressBar;
+    //protected ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,20 +21,19 @@ public class Login extends AppCompatActivity {
 
         emaili = (EditText) findViewById(R.id.emailaddress);
         passwo = (EditText) findViewById(R.id.passw);
-        progressBar = new ProgressBar(this);
     }
 
     public void Log_in(View view) {
         String email = emaili.getText().toString().trim();
         String pas = passwo.getText().toString().trim();
 
-        //if (TextUtils.isEmpty(email) || TextUtils.isEmpty(pas)) {
-            //Toast.makeText(Login.this, "Empty fields!! \nPlease Enter all your details", Toast.LENGTH_SHORT).show();
-          //  return;
-        //}
-        //else {
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(pas)) {
+            Toast.makeText(Login.this, "Empty fields!! \nPlease Enter all your details", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else {
             startActivity(new Intent(Login.this, MainActivity.class));
-        //}
+        }
 
     }
 

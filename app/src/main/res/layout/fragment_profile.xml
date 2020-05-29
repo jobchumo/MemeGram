@@ -86,16 +86,37 @@
         android:hint="@string/password"/>
 
     <Button
+        android:id="@+id/update_button"
         android:layout_width="240dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:text="@string/update"
         android:textAllCaps="false"
-        android:onClick="Update"
         android:layout_below="@+id/pass_word"
         android:layout_marginTop="30dp"
         android:background="@drawable/button"
         android:textSize="16sp"
         android:fontFamily="@font/light"
         android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/log_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentEnd="true"
+        android:fontFamily="@font/light"
+        android:text="@string/log_out"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/log_out_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_toStartOf="@id/log_out"
+        android:src="@drawable/logout_icon" />
+
 </RelativeLayout>

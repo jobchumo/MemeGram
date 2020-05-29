@@ -5,6 +5,10 @@
         android:title="@string/home"
         android:icon="@drawable/homebutton"/>
     <item
+        android:id="@+id/nav_search"
+        android:title="Search"
+        android:icon="@drawable/searchbutton"/>
+    <item
         android:id="@+id/nav_upload"
         android:title="@string/add_meme"
         android:icon="@drawable/addmeme"/>

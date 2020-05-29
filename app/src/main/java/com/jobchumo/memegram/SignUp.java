@@ -34,6 +34,7 @@ public class SignUp extends AppCompatActivity {
         }
         if (passwo.equals(confirm)){
 
+
         }
         else {
             Toast.makeText(SignUp.this, "Passwords do not match!! \nPlease try again", Toast.LENGTH_SHORT).show();
