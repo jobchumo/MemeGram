@@ -31,7 +31,7 @@ public class SignUp extends AppCompatActivity {
         if (TextUtils.isEmpty(emaill) || TextUtils.isEmpty(passwo) || TextUtils.isEmpty(confirm)){
             Toast.makeText(SignUp.this, "Empty fields!! \nPlease Enter all your details", Toast.LENGTH_SHORT).show();
             return;
-        }
+            }
         if (passwo.equals(confirm)){
 
 
