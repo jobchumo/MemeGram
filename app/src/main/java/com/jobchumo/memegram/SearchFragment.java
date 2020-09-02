@@ -27,8 +27,8 @@ public class SearchFragment extends Fragment {
         View profileView = inflater.inflate(R.layout.fragment_search, container, false);
 
         ArrayList<MemePosts> memeposts = new ArrayList<>();
-        memeposts.add(new MemePosts(R.drawable.karencat, "CJ701", "911 I'd like to report..."));
-        memeposts.add(new MemePosts(R.drawable.nickfury, "CJKipu", "Now you see me, Now you don't"));
+//        memeposts.add(new MemePosts(R.drawable.karencat, "CJ701", "911 I'd like to report..."));
+//        memeposts.add(new MemePosts(R.drawable.nickfury, "CJKipu", "Now you see me, Now you don't"));
 
         recyclerView = profileView.findViewById(R.id.recyclerView2);
         recyclerView.setHasFixedSize(true);

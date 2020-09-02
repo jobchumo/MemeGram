@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.MemeViewHolder> {
@@ -44,7 +46,7 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.MemeViewHolder
     @Override
     public void onBindViewHolder(@NonNull MemeViewHolder holder, int position) {
         MemePosts currentMeme = mMemeList.get(position);
-        holder.mImageView.setImageResource(currentMeme.getmImageResource());
+        Picasso.get().load(currentMeme.getmImageResource()).into(holder.mImageView);
         holder.mCaption.setText(currentMeme.getmCaption());
         holder.mUsername.setText(currentMeme.getmUsername());
     }
