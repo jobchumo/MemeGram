@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +25,7 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
-    String url = "https://memes.mobisoko.co.ke/memes/";
+    String url = "https://memes.mobisoko.co.ke/memes/?auth=yeet";
     private ArrayList<MemePosts> mMemePost;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -56,7 +54,8 @@ public class HomeFragment extends Fragment {
         progressDialog.setMessage("Humor Loading...");
         progressDialog.show();
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url,
+                new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
               try {
@@ -79,7 +78,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
-                Toast.makeText(getContext(), "Error Occured", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
