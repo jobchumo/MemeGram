@@ -20,10 +20,14 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class SignUp extends AppCompatActivity {
     protected EditText emailadd, pass, confpass;
     protected ProgressBar progressBar;
+    protected RequestQueue requestQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +45,13 @@ public class SignUp extends AppCompatActivity {
         String passwo = pass.getText().toString().trim();
         String confirm = confpass.getText().toString().trim();
 
+
         if (TextUtils.isEmpty(emaill) || TextUtils.isEmpty(passwo) || TextUtils.isEmpty(confirm)){
             Toast.makeText(SignUp.this, "Empty fields!! \nPlease Enter all your details", Toast.LENGTH_SHORT).show();
             return;
             }
         if (passwo.equals(confirm)){
-            saveDate(emaill, passwo);
+           saveDate(emaill, passwo);
         }
         else {
             Toast.makeText(SignUp.this, "Passwords do not match!! \nPlease try again", Toast.LENGTH_SHORT).show();
@@ -63,12 +68,11 @@ public class SignUp extends AppCompatActivity {
         progressDialog.show();
         String url = "https://memes.mobisoko.co.ke/users/";
 
-        JSONObject jsonObject = new JSONObject();
+        final JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("Email_Address", emaill);
-            jsonObject.put("Password", passwo);
+            jsonObject.put("emailaddress", emaill);
+            jsonObject.put("password", passwo);
         } catch (JSONException e) {
-            //Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
 
@@ -78,18 +82,13 @@ public class SignUp extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             progressDialog.dismiss();
-                            String errorr = response.getString("htttpsStatuss");
+                            String errorr = response.getString("httpStatus");
+                            Toast.makeText(SignUp.this, "Success", Toast.LENGTH_SHORT).show();
 
-                            if (errorr.equals("") || errorr.equals(null)) {
-
-                            }
-                            else  if (errorr.equals("OK")) {
-                                JSONObject object = response.getJSONObject("object");
-
-                            }
-                            else {}
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Toast.makeText(SignUp.this, "Error", Toast.LENGTH_SHORT).show();
+
                             progressDialog.dismiss();
                         }
                     }
@@ -98,12 +97,21 @@ public class SignUp extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
                 Toast.makeText(SignUp.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
             }
         });
 
-        RequestQueue requestQueue = Volley.newRequestQueue(SignUp.this);
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(jsonObjectRequest);
     }
 
 
+    public void post(View view) {
+        MyVolleyRequest.getInstance(SignUp.this, new IVolley() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(SignUp.this, ""+response, Toast.LENGTH_SHORT).show();
+            }
+        }).postRequest("https://memes.mobisoko.co.ke/users/");
+    }
 }

@@ -22,12 +22,14 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.MemeViewHolder
         public ImageView mImageView;
         public TextView mUsername;
         public TextView mCaption;
+        //public TextView mDateCreated;
 
         public MemeViewHolder(@NonNull View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.postmeme);
             mUsername = itemView.findViewById(R.id.userpost);
             mCaption = itemView.findViewById(R.id.caption);
+
         }
     }
 
