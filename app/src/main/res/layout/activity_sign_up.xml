@@ -69,19 +69,6 @@
         android:layout_marginTop="30dp"
         android:textColor="@color/white"/>
 
-    <Button
-        android:layout_width="240dp"
-        android:layout_height="50dp"
-        android:text="POST"
-        android:textAllCaps="false"
-        android:background="@drawable/button"
-        android:textSize="16sp"
-        android:fontFamily="@font/light"
-        android:onClick="post"
-        android:layout_below="@+id/signupBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:textColor="@color/white"/>
     <EditText
         android:id="@+id/confirmpass"
         android:layout_width="300dp"
