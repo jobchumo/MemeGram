@@ -27,6 +27,17 @@
         android:textSize="25sp"
         android:alpha="0.5" />
 
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="300dp"
+        android:layout_height="43dp"
+        android:layout_below="@id/textView3"
+        android:layout_centerHorizontal="true"
+        android:inputType="text"
+        android:background="@drawable/input_field"
+        android:layout_marginTop="40dp"
+        android:hint="@string/username"
+        android:fontFamily="@font/light"/>
 
     <EditText
         android:id="@+id/email_address"
@@ -34,8 +45,8 @@
         android:layout_height="43dp"
         android:ems="10"
         android:fontFamily="@font/light"
-        android:layout_below="@+id/textView3"
-        android:layout_marginTop="40dp"
+        android:layout_below="@+id/userName"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:inputType="textEmailAddress"
         android:hint="@string/email_address"

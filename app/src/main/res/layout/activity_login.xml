@@ -79,6 +79,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="15dp"
         android:fontFamily="@font/light"
+        android:onClick="Sign_up"
         android:text="@string/don_t_have_an_account"
         android:textColor="@color/grey"
         android:textSize="20sp"/>

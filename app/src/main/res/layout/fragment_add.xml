@@ -62,13 +62,21 @@
         android:background="@drawable/inputfield_caption"
         android:hint="@string/caption" />
 
+    <Spinner
+        android:id="@+id/category_Spinner"
+        android:layout_width="200dp"
+        android:layout_height="43dp"
+        android:layout_below="@id/desc"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"/>
+
     <Button
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:text="@string/post"
         android:textAllCaps="false"
-        android:layout_below="@+id/desc"
+        android:layout_below="@+id/category_Spinner"
         android:layout_marginTop="30dp"
         android:background="@drawable/button"
         android:textSize="16sp"

@@ -23,16 +23,44 @@
         android:layout_below="@id/singleMeme"
         android:textSize="16sp"
         android:layout_marginTop="20dp"
-        android:text="Caption"
+        android:text="@string/caption"
         android:layout_marginStart="35dp"
         android:textColor="@color/grey"
         android:fontFamily="@font/light"/>
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/postCaption">
+
+        <TextView
+            android:id="@+id/cate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp"
+            android:text="@string/category"
+            android:layout_marginStart="35dp"
+            android:textColor="@color/grey"
+            android:fontFamily="@font/heavy"/>
+        <TextView
+            android:id="@+id/category_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp"
+            android:text="Animals"
+            android:layout_marginStart="15dp"
+            android:textColor="@color/grey"
+            android:fontFamily="@font/light"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/deletePost"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_below="@id/postCaption"
+        android:layout_below="@id/linear_layout"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/button"
