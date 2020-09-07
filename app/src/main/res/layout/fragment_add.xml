@@ -27,27 +27,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <ImageButton
-        android:id="@+id/postmeme"
+    <ImageView
+        android:id="@+id/imageChosen"
         android:layout_below="@+id/uploadmeme"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/add_photo"
         android:adjustViewBounds="true"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"/>
 
-    <TextView
+    <Button
         android:id="@+id/choosephoto"
-        android:textSize="20sp"
-        android:layout_below="@+id/postmeme"
-        android:layout_width="wrap_content"
+        android:textSize="16sp"
+        android:layout_below="@+id/imageChosen"
+        android:layout_width="150dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:textAllCaps="false"
+        android:background="@drawable/button"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/heavy"
+        android:fontFamily="@font/light"
         android:text="@string/choose_photo"/>
 
     <EditText
@@ -57,26 +59,43 @@
         android:layout_below="@+id/choosephoto"
         android:fontFamily="@font/light"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:inputType="text"
         android:background="@drawable/inputfield_caption"
         android:hint="@string/caption" />
 
-    <Spinner
-        android:id="@+id/category_Spinner"
-        android:layout_width="200dp"
-        android:layout_height="43dp"
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/desc"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/category"
+            android:fontFamily="@font/heavy"
+            android:layout_marginStart="35dp"/>
+        <Spinner
+            android:id="@+id/category_Spinner"
+            android:layout_width="200dp"
+            android:layout_height="43dp"
+            android:dropDownWidth="200dp"
+            android:layout_marginStart="15dp"
+            android:entries="@array/categories"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
 
     <Button
+        android:id="@+id/postButton"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:text="@string/post"
         android:textAllCaps="false"
-        android:layout_below="@+id/category_Spinner"
+        android:layout_below="@+id/linear1"
         android:layout_marginTop="30dp"
         android:background="@drawable/button"
         android:textSize="16sp"

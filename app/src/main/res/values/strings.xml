@@ -24,4 +24,19 @@
     <string name="log_out">Log Out</string>
     <string name="delete_post">Delete Post</string>
     <string name="category">Category:</string>
+
+    <string-array name="categories">
+        <item> Animals </item>
+        <item> Anime </item>
+        <item> Basketball </item>
+        <item> Car </item>
+        <item> Comics </item>
+        <item> Gaming </item>
+        <item> History </item>
+        <item> Music </item>
+        <item> Politics </item>
+        <item> Science and Tech </item>
+        <item> Football </item>
+        <item> Tv and Film </item>
+    </string-array>
 </resources>
