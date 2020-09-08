@@ -42,12 +42,13 @@
     <Button
         android:id="@+id/choosephoto"
         android:textSize="16sp"
+        android:textColor="@color/white"
         android:layout_below="@+id/imageChosen"
         android:layout_width="150dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:textAllCaps="false"
-        android:background="@drawable/button"
+        android:background="@drawable/button2"
         android:layout_height="wrap_content"
         android:fontFamily="@font/light"
         android:text="@string/choose_photo"/>

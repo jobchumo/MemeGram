@@ -1,28 +1,27 @@
 package com.jobchumo.memegram;
 
 import android.app.ProgressDialog;
-import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.PointerIcon;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -30,15 +29,23 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.ml.vision.FirebaseVision;
+import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+import com.google.firebase.ml.vision.text.FirebaseVisionText;
+import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
@@ -51,20 +58,23 @@ public class UploadFragment extends Fragment implements AdapterView.OnItemSelect
     protected Button postBtn, chooseBtn, trialB;
     protected static final int GALLERY_REQUEST_CODE = 1;
     protected Bitmap bitmap;
+    protected StorageReference mStorageRef;
+    protected Uri uri = null;
 
     @Override
     @Nullable
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         final View rootView = inflater.inflate(R.layout.fragment_add, container, false);
 
-//        if (!SharedPrefManager.getInstance(getContext()).isLoggedIn()) {
-//            getActivity().finish();
-//            startActivity(new Intent(getContext(), Login.class));
-//        }
+        if (!SharedPrefManager.getInstance(getContext()).isLoggedIn()) {
+            getActivity().finish();
+            startActivity(new Intent(getContext(), Login.class));
+        }
         caption = rootView.findViewById(R.id.desc);
         imageView = rootView.findViewById(R.id.imageChosen);
-        Spinner category = rootView.findViewById(R.id.category_Spinner);
+        mStorageRef = FirebaseStorage.getInstance().getReference();
 
+        Spinner category = rootView.findViewById(R.id.category_Spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
@@ -86,7 +96,7 @@ public class UploadFragment extends Fragment implements AdapterView.OnItemSelect
         }
     }
 
-    private void postImage(String imgCaption, String username, String imageUrl, String categorySelect) {
+    private void postImage(String imgCaption, String username, String imageUrl, String categorySelect, String memeText) {
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Uploading your meme...");
         progressDialog.show();
@@ -99,10 +109,11 @@ public class UploadFragment extends Fragment implements AdapterView.OnItemSelect
 
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("Pic_VId", imageUrl);
             jsonObject.put("user_name", username);
+            jsonObject.put("Pic_VId", imageUrl);
             jsonObject.put("caption", imgCaption);
             jsonObject.put("category", categorySelect);
+            jsonObject.put("meme_text", memeText);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -137,11 +148,58 @@ public class UploadFragment extends Fragment implements AdapterView.OnItemSelect
         postBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User user = SharedPrefManager.getInstance(getContext()).getUser();
-                String imgCaption = caption.getText().toString().trim();
-                String username = "cjkipu";
-                String imageUrl = imageToString(bitmap);
-                postImage(imgCaption, username, imageUrl, categorySelected);
+                FirebaseVisionImage image = null;
+                try {
+                    image = FirebaseVisionImage.fromFilePath(getContext(), uri);
+                } catch (IOException e) {
+                    Log.d("ImageVision", e.getMessage());
+                }
+                FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance().getCloudTextRecognizer();
+                detector.processImage(image)
+                        .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+                            @Override
+                            public void onSuccess(FirebaseVisionText firebaseVisionText) {
+                                String text = "";
+                                for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
+                                    text += block.getText();
+                                }
+                                Log.d("MemeContent", text);
+                                MemeContent memeContent = new MemeContent(text);
+                                SharedPrefManager.getInstance(getContext()).isMemeContent(memeContent);
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.d("VisionFailure", e.getMessage());
+                            }
+                        });
+
+                StorageReference filepath = mStorageRef.child("memes").child(uri.getLastPathSegment());
+                filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        if (taskSnapshot.getMetadata() != null) {
+                            if (taskSnapshot.getMetadata().getReference() != null) {
+                                Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
+                                result.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        User user = SharedPrefManager.getInstance(getContext()).getUser();
+                                        MemeContent memeContent = SharedPrefManager.getInstance(getContext()).getMemeContent();
+                                        final String imgCaption = caption.getText().toString().trim();
+                                        final String username = user.getUsername();
+                                        final String memeText = memeContent.getMemeContent();
+                                        Toast.makeText(getContext(), memeText, Toast.LENGTH_LONG).show();
+                                        final String imageUrl = uri.toString();
+                                        postImage(imgCaption, username, imageUrl, categorySelected, memeText);
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+
             }
         });
     }
@@ -155,17 +213,8 @@ public class UploadFragment extends Fragment implements AdapterView.OnItemSelect
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            Uri uri = data.getData();
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), uri);
-                imageView.setImageBitmap(bitmap);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            catch (NullPointerException e) {
-                e.printStackTrace();
-            }
+            uri = data.getData();
+            imageView.setImageURI(uri);
         }
     }
 

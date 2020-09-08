@@ -18,6 +18,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -34,15 +35,15 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        usernam = (EditText) findViewById(R.id.userName);
-        emailadd = (EditText) findViewById(R.id.email_address);
-        pass = (EditText) findViewById(R.id.password);
-        confpass = (EditText) findViewById(R.id.confirmpass);
+        usernam = findViewById(R.id.userName);
+        emailadd = findViewById(R.id.email_address);
+        pass = findViewById(R.id.password);
+        confpass = findViewById(R.id.confirmpass);
         progressBar = new ProgressBar(this);
 
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
             finish();
-            startActivity(new Intent(SignUp.this, HomeFragment.class));
+            startActivity(new Intent(SignUp.this, MainActivity.class));
             return;
         }
 
@@ -75,11 +76,11 @@ public class SignUp extends AppCompatActivity {
         progressDialog.setMessage("Registering User...");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
-        String url = "https://memes.mobisoko.co.ke/users/test.php";
+        String url = "https://memes.mobisoko.co.ke/users/";
 
         final JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("user_name", username );
+            jsonObject.put("user_name", username);
             jsonObject.put("email_address", emaill);
             jsonObject.put("pass_word", passwo);
         } catch (JSONException e) {
@@ -91,10 +92,10 @@ public class SignUp extends AppCompatActivity {
         User user = new User(username, emaill, passwo);
         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonArray,
-                new Response.Listener<JSONArray>() {
+        JsonObjectRequest signUpRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(JSONObject response) {
                         progressDialog.dismiss();
                         Log.d("ResponseJS", response.toString());
                         Toast.makeText(SignUp.this, "Registration Successful", Toast.LENGTH_SHORT).show();
@@ -105,12 +106,14 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
-                Log.d("ErrorJS", error.toString());
+                String errojs = error.getMessage();
+                String signup = "Registration Successful";
+                Log.d("ErrorJS", errojs);
                 Toast.makeText(SignUp.this, "Error!! Registration Failed", Toast.LENGTH_LONG).show();
             }
         });
         requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(jsonArrayRequest);
+        requestQueue.add(signUpRequest);
     }
 
 }

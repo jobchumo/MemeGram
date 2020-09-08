@@ -9,6 +9,7 @@ public class SharedPrefManager {
     private static final String KEY_USERNAME = "keyusername";
     private static final String KEY_EMAIL = "keyemail";
     private static final String KEY_PASSWORD = "keypassword";
+    private static final String KEY_MEME_CONTENT = "keymemecontent";
 
     private static SharedPrefManager mInstance;
     private static Context mCtx;
@@ -33,6 +34,13 @@ public class SharedPrefManager {
         editor.apply();
     }
 
+    public void isMemeContent (MemeContent memeContent) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_MEME_CONTENT, memeContent.getMemeContent());
+        editor.apply();
+    }
+
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(KEY_USERNAME, null) != null;
@@ -45,6 +53,13 @@ public class SharedPrefManager {
                 sharedPreferences.getString(KEY_EMAIL, null),
                 sharedPreferences.getString(KEY_PASSWORD, null)
         );
+    }
+
+    public MemeContent getMemeContent() {
+            SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            return new MemeContent(
+                    sharedPreferences.getString(KEY_MEME_CONTENT, null)
+            );
     }
 
     public void logout () {
