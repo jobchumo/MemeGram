@@ -2,10 +2,7 @@ package com.jobchumo.memegram;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
@@ -55,7 +52,7 @@ public class UploadFragment extends Fragment implements AdapterView.OnItemSelect
 
     protected ImageView imageView;
     protected EditText caption;
-    protected Button postBtn, chooseBtn, trialB;
+    protected Button postBtn, chooseBtn;
     protected static final int GALLERY_REQUEST_CODE = 1;
     protected Bitmap bitmap;
     protected StorageReference mStorageRef;
@@ -161,8 +158,9 @@ public class UploadFragment extends Fragment implements AdapterView.OnItemSelect
                             public void onSuccess(FirebaseVisionText firebaseVisionText) {
                                 String text = "";
                                 for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
-                                    text += block.getText();
+                                    text = text + block.getText();
                                 }
+                                text = text.replace(System.lineSeparator(), " ");
                                 Log.d("MemeContent", text);
                                 MemeContent memeContent = new MemeContent(text);
                                 SharedPrefManager.getInstance(getContext()).isMemeContent(memeContent);
@@ -212,7 +210,7 @@ public class UploadFragment extends Fragment implements AdapterView.OnItemSelect
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK) {
             uri = data.getData();
             imageView.setImageURI(uri);
         }

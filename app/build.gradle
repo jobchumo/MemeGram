@@ -39,6 +39,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:19.2.0'
     implementation 'com.firebaseui:firebase-ui-database:3.2.2'
     implementation 'com.google.firebase:firebase-ml-vision:24.0.0'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.4.+'
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
