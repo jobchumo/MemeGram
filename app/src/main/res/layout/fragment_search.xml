@@ -4,19 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <SearchView
-        android:id="@+id/search_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:queryHint="Search Meme"
-        android:layout_marginTop="8dp"
-        android:background="@color/lightgrey"
-        android:queryBackground="@color/white" />
+    <EditText
+        android:id="@+id/searchText"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:background="@drawable/input_field"
+        android:hint="@string/search_meme"
+        android:fontFamily="@font/light"
+        android:textSize="16sp"
+        android:layout_margin="10dp"/>
+
+    <ImageButton
+        android:id="@+id/searchBtn"
+        android:layout_width="50dp"
+        android:layout_height="35dp"
+        android:layout_toRightOf="@+id/searchText"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/searchbutton"
+        android:background="@drawable/button"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView2"
         android:layout_width="match_parent"
-        android:layout_below="@id/search_view"
+        android:layout_below="@id/searchText"
         android:layout_height="match_parent"
         android:padding="4dp"
         android:scrollbars="vertical"

@@ -24,6 +24,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Map;
+
 public class Login extends AppCompatActivity {
     protected EditText user, passwo;
 
@@ -60,7 +62,7 @@ public class Login extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Logging you in...");
         progressDialog.show();
-        String url = "https://postman-echo.com/post";
+        String url = "https://memes.mobisoko.co.ke/auth/";
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -73,18 +75,17 @@ public class Login extends AppCompatActivity {
         final JSONArray jsonArray = new JSONArray();
         jsonArray.put(jsonObject);
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonArray,
-                new Response.Listener<JSONArray>() {
+        JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(JSONObject response) {
                         progressDialog.dismiss();
                         Log.d("LoginResponse", response.toString());
                         try {
-                            JSONObject obj = response.getJSONObject(0);
                             User user = new User(
-                                    obj.getString("user_name"),
-                                    obj.getString("email_address"),
-                                    obj.getString("pass_word")
+                                    response.getString("Username"),
+                                    response.getString("Email"),
+                                    response.getString("Password")
                             );
                             SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
                         } catch (JSONException e) {
@@ -98,7 +99,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
-                Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login.this, "Login Failed"+ error.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("LoginError", error.toString());
             }
         });

@@ -24,6 +24,7 @@
     <string name="log_out">Log Out</string>
     <string name="delete_post">Delete Post</string>
     <string name="category">Category:</string>
+    <string name="search_meme">Search Meme</string>
 
     <string-array name="categories">
         <item> Animals </item>
