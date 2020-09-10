@@ -32,6 +32,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SearchFragment extends Fragment implements View.OnClickListener{
     private RecyclerView recyclerView;
@@ -50,7 +51,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
         recyclerView = searchView.findViewById(R.id.recyclerView2);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
-        adapter = new MemeAdapter(memeposts);
+        adapter = new MemeAdapter(memeposts, getContext());
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -63,6 +64,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
     }
 
     private void searchFunction() {
+        memeposts.clear();
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Searching for your meme...");
         progressDialog.show();
@@ -89,7 +91,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                                 MemePosts memePosts = new MemePosts();
                                 memePosts.setmImageResource(memes.getString("Pic_Vid"));
                                 memePosts.setmCaption(memes.getString("Caption"));
-                                memePosts.setmUsername(memes.getString("Meme_Id"));
+                                memePosts.setmUsername(memes.getString("username"));
+                                memePosts.setmCategory(memes.getString("Category"));
                                 memeposts.add(memePosts);
                             }}catch (JSONException e) {
                             Log.d("SearchException", e.getMessage());

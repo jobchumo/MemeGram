@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Meme</string>
+    <string name="app_name">MemeGram</string>
     <string name="sign_up">Sign Up</string>
     <string name="memegram">MemeGram</string>
     <string name="welcome">Welcome</string>
@@ -25,6 +25,8 @@
     <string name="delete_post">Delete Post</string>
     <string name="category">Category:</string>
     <string name="search_meme">Search Meme</string>
+    <string name="dislikes">Dislikes</string>
+    <string name="change_password">Change Password</string>
 
     <string-array name="categories">
         <item> Animals </item>
@@ -32,10 +34,12 @@
         <item> Basketball </item>
         <item> Car </item>
         <item> Comics </item>
+        <item> Dark Humor </item>
         <item> Gaming </item>
         <item> History </item>
         <item> Music </item>
         <item> Politics </item>
+        <item> Puns </item>
         <item> Science and Tech </item>
         <item> Football </item>
         <item> Tv and Film </item>

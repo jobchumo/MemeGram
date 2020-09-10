@@ -4,6 +4,15 @@ public class MemePosts {
     private String mImageResource;
     private String mUsername;
     private String mCaption;
+    private String mCategory;
+
+    public String getmCategory() {
+        return mCategory;
+    }
+
+    public void setmCategory(String mCategory) {
+        this.mCategory = mCategory;
+    }
 
     public MemePosts() {
     }

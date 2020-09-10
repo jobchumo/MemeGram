@@ -47,12 +47,23 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"/>
 
+    <TextView
+        android:id="@+id/userNameView"
+        android:textSize="20sp"
+        android:textColor="@color/grey"
+        android:fontFamily="@font/light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profilename"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"/>
+
     <EditText
         android:id="@+id/fullname"
         android:hint="@string/full_name"
         android:inputType="text"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/profilename"
+        android:layout_below="@+id/userNameView"
         android:layout_marginTop="15dp"
         android:layout_width="300dp"
         android:fontFamily="@font/light"
@@ -60,8 +71,8 @@
         android:background="@drawable/input_field"/>
 
     <EditText
-        android:id="@+id/user_name"
-        android:hint="@string/username"
+        android:id="@+id/pass_word"
+        android:hint="@string/change_password"
         android:inputType="text"
         android:layout_below="@+id/fullname"
         android:layout_width="300dp"
@@ -73,17 +84,17 @@
 
 
     <EditText
-        android:id="@+id/pass_word"
+        android:id="@+id/confpass_word"
         android:layout_width="300dp"
         android:layout_height="43dp"
         android:ems="10"
         android:fontFamily="@font/light"
-        android:layout_below="@+id/user_name"
+        android:layout_below="@+id/pass_word"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:inputType="textPassword"
         android:background="@drawable/input_field"
-        android:hint="@string/password"/>
+        android:hint="@string/confirm_password"/>
 
     <Button
         android:id="@+id/update_button"
@@ -92,7 +103,7 @@
         android:layout_centerHorizontal="true"
         android:text="@string/update"
         android:textAllCaps="false"
-        android:layout_below="@+id/pass_word"
+        android:layout_below="@+id/confpass_word"
         android:layout_marginTop="30dp"
         android:background="@drawable/button"
         android:textSize="16sp"

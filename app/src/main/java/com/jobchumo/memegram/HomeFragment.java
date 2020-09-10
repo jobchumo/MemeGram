@@ -3,9 +3,11 @@ package com.jobchumo.memegram;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -24,7 +26,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     String url = "https://memes.mobisoko.co.ke/memes/?auth=yeet";
     private ArrayList<MemePosts> mMemePost;
@@ -46,7 +48,7 @@ public class HomeFragment extends Fragment {
         recyclerView = rootView.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
-        adapter = new MemeAdapter(mMemePost);
+        adapter = new MemeAdapter(mMemePost, getContext());
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -66,15 +68,18 @@ public class HomeFragment extends Fragment {
             public void onResponse(JSONArray response) {
               try {
                   for (int i = 0 ; i<response.length(); i++){
-                      JSONObject memes = response.getJSONObject(i);
+                      final JSONObject memes = response.getJSONObject(i);
                       MemePosts memePosts = new MemePosts();
                       memePosts.setmImageResource(memes.getString("Pic_Vid"));
                       memePosts.setmCaption(memes.getString("Caption"));
-                      memePosts.setmUsername(memes.getString("Meme_Id"));
+                      memePosts.setmUsername(memes.getString("username"));
+                      memePosts.setmCategory(memes.getString("Category"));
                       mMemePost.add(memePosts);
+
                   }
               }
               catch (JSONException e){
+                  Log.d("JSONError", e.getMessage());
                   Toast.makeText(getContext(), "JSON is not valid", Toast.LENGTH_SHORT).show();
               }
               adapter.notifyDataSetChanged();
@@ -92,4 +97,9 @@ public class HomeFragment extends Fragment {
         requestQueue.add(jsonArrayRequest);
     }
 
-}
+    @Override
+    public void onClick(View view) {
+
+        }
+    }
+

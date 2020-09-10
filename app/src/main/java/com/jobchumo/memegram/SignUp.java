@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -43,7 +44,9 @@ public class SignUp extends AppCompatActivity {
 
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
             finish();
-            startActivity(new Intent(SignUp.this, MainActivity.class));
+            Fragment fragment = new HomeFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.frag_container, fragment).commit();
+            //startActivity(new Intent(SignUp.this, MainActivity.class));
             return;
         }
 

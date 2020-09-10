@@ -97,7 +97,7 @@ public class UploadFragment extends Fragment implements AdapterView.OnItemSelect
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Uploading your meme...");
         progressDialog.show();
-        String url = "https://postman-echo.com/post";
+        String url = "https://memes.mobisoko.co.ke/upload/index.php";
 
         Log.d("dataPost", imgCaption);
         Log.d("username", username);
@@ -190,6 +190,7 @@ public class UploadFragment extends Fragment implements AdapterView.OnItemSelect
                                         final String memeText = memeContent.getMemeContent();
                                         Toast.makeText(getContext(), memeText, Toast.LENGTH_LONG).show();
                                         final String imageUrl = uri.toString();
+                                        Log.d("ImageUrl", imageUrl);
                                         postImage(imgCaption, username, imageUrl, categorySelected, memeText);
                                     }
                                 });

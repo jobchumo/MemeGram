@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="10dp"
     android:layout_margin="8dp">
     
@@ -13,14 +14,14 @@
 
         <TextView
             android:id="@+id/userpost"
-            android:text="Username"
-            android:textColor="@color/grey"
+            android:text="@string/username"
+            android:textColor="@color/red"
             android:fontFamily="@font/heavy"
             android:layout_marginTop="4dp"
             android:layout_marginStart="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"/>
+            android:textSize="18sp"/>
 
         <ImageView
             android:id="@+id/postmeme"
@@ -28,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/userpost"
             android:layout_marginTop="12dp"
+            android:src="@drawable/skull"
             android:adjustViewBounds="true"/>
 
         <TextView
@@ -38,9 +40,10 @@
             android:layout_marginStart="8dp"
             android:layout_below="@+id/postmeme"
             android:layout_marginTop="10dp"
+            android:textStyle="italic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"/>
+            android:textSize="18sp"/>
        <LinearLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
@@ -48,43 +51,26 @@
            android:layout_marginTop="10dp"
            android:orientation="horizontal">
 
-           <ImageButton
-               android:id="@+id/icon_like"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:backgroundTintMode="screen"
-               android:src="@drawable/like_icon"/>
-
            <TextView
-               android:id="@+id/likes_display"
+               android:id="@+id/cate"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:textColor="@color/red"
-               android:layout_marginTop="7dp"
-               android:text="0"
-               android:padding="5dp"
-               android:fontFamily="@font/light"
                android:textSize="16sp"
-               android:textStyle="bold"
-               />
+               android:layout_marginTop="10dp"
+               android:text="@string/category"
+               android:layout_marginStart="8dp"
+               android:textColor="@color/grey"
+               android:fontFamily="@font/heavy"/>
            <TextView
+               android:id="@+id/category_Name"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:layout_marginTop="6dp"
                android:textSize="16sp"
-               android:fontFamily="@font/light"
-               android:textColor="@color/red"
-               android:text="Likes"
-               android:textStyle="bold"
-               />
-
-           <ImageButton
-               android:id="@+id/icon_comment"
-               android:layout_width="wrap_content"
-               android:layout_marginStart="5dp"
-               android:layout_height="wrap_content"
-               android:backgroundTintMode="screen"
-               android:src="@drawable/comment_icon"/>
+               android:layout_marginTop="10dp"
+               android:text="Animals"
+               android:layout_marginStart="15dp"
+               android:textColor="@color/grey"
+               android:fontFamily="@font/light"/>
 
            <ImageButton
                android:id="@+id/icon_share"
@@ -92,7 +78,8 @@
                android:layout_height="wrap_content"
                android:src="@drawable/share_icon"
                android:backgroundTintMode="screen"
-               android:layout_marginStart="200dp"/>
+               android:layout_marginStart="175dp"/>
+
 
 
        </LinearLayout>

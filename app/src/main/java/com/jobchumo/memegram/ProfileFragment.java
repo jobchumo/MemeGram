@@ -3,6 +3,7 @@ package com.jobchumo.memegram;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -25,8 +27,8 @@ import org.json.JSONObject;
 
 public class ProfileFragment extends Fragment {
 
-    protected TextView emailView, logout;
-    protected EditText fullname, username, password;
+    protected TextView emailView, logout, usernameView;
+    protected EditText fullname, confPass, password;
     protected Button updateBtn;
     protected ImageView logoutIcon;
     @Override
@@ -40,14 +42,17 @@ public class ProfileFragment extends Fragment {
         }
 
 
+        usernameView = profileView.findViewById(R.id.userNameView);
         emailView = profileView.findViewById(R.id.profilename);
         final User user = SharedPrefManager.getInstance(getContext()).getUser();
         emailView.setText(user.getEmail());
+        usernameView.setText(user.getUsername());
+
 
         logout = profileView.findViewById(R.id.log_out);
         logoutIcon = profileView.findViewById(R.id.log_out_icon);
         fullname = profileView.findViewById(R.id.fullname);
-        username = profileView.findViewById(R.id.user_name);
+        confPass = profileView.findViewById(R.id.confpass_word);
         password = profileView.findViewById(R.id.passw);
         updateBtn = profileView.findViewById(R.id.update_button);
 
@@ -70,28 +75,37 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String full_name = fullname.getText().toString().trim();
-                String user_name = username.getText().toString().trim();
                 String pass_word = password.getText().toString().trim();
+                String confpassword = confPass.getText().toString().trim();
 
-                updateProfile(full_name, user_name, pass_word);
+                if (TextUtils.isEmpty(full_name) || TextUtils.isEmpty(pass_word) || TextUtils.isEmpty(confpassword)) {
+                    Toast.makeText(getContext(), "Empty fields!! \nPlease Enter all your details", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (pass_word.equals(confpassword)) {
+                    updateProfile(full_name, pass_word);
+                } else {
+                    Toast.makeText(getContext(), "Passwords do not match!! \nPlease try again", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             }
         });
 
         return profileView;
     }
 
-    private void updateProfile(String full_name, String user_name, String pass_word) {
+    private void updateProfile(String full_name, String pass_word) {
         ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Updating your profile..");
         progressDialog.show();
 
         String url = "";
 
+
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("", "");
-            jsonObject.put("", "");
-            jsonObject.put("", "");
+            jsonObject.put("full_name", full_name);
+            jsonObject.put("pass_word", pass_word);
         } catch (JSONException e) {
             e.printStackTrace();
         }
