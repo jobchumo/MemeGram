@@ -73,7 +73,7 @@
     <EditText
         android:id="@+id/pass_word"
         android:hint="@string/change_password"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:layout_below="@+id/fullname"
         android:layout_width="300dp"
         android:fontFamily="@font/light"

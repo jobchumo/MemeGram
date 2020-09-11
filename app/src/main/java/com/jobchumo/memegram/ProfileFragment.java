@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,7 @@ public class ProfileFragment extends Fragment {
         logoutIcon = profileView.findViewById(R.id.log_out_icon);
         fullname = profileView.findViewById(R.id.fullname);
         confPass = profileView.findViewById(R.id.confpass_word);
-        password = profileView.findViewById(R.id.passw);
+        password = profileView.findViewById(R.id.pass_word);
         updateBtn = profileView.findViewById(R.id.update_button);
 
         logout.setOnClickListener(new View.OnClickListener() {
@@ -95,31 +96,38 @@ public class ProfileFragment extends Fragment {
     }
 
     private void updateProfile(String full_name, String pass_word) {
-        ProgressDialog progressDialog = new ProgressDialog(getContext());
+        final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Updating your profile..");
         progressDialog.show();
 
-        String url = "";
+        User user = SharedPrefManager.getInstance(getContext()).getUser();
+        String username = user.getUsername();
+        String url = "https://memes.mobisoko.co.ke/update/?auth=yeet";
 
 
         JSONObject jsonObject = new JSONObject();
         try {
+            jsonObject.put("user_name", username);
             jsonObject.put("full_name", full_name);
             jsonObject.put("pass_word", pass_word);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
+                        progressDialog.dismiss();
+                        Log.d("UpdateResponse", response.toString());
+                        Toast.makeText(getContext(), "Profile update Successful", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                progressDialog.dismiss();
+                Log.d("UpdateError", error.toString());
+                Toast.makeText(getContext(), "Profile update Failed", Toast.LENGTH_SHORT).show();
             }
         });
 

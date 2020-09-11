@@ -188,7 +188,7 @@ public class UploadFragment extends Fragment implements AdapterView.OnItemSelect
                                         final String imgCaption = caption.getText().toString().trim();
                                         final String username = user.getUsername();
                                         final String memeText = memeContent.getMemeContent();
-                                        Toast.makeText(getContext(), memeText, Toast.LENGTH_LONG).show();
+                                        //Toast.makeText(getContext(), memeText, Toast.LENGTH_LONG).show();
                                         final String imageUrl = uri.toString();
                                         Log.d("ImageUrl", imageUrl);
                                         postImage(imgCaption, username, imageUrl, categorySelected, memeText);
