@@ -3,8 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/jokip/AndroidStudioProjects/MemeGram/app/src/main/res/drawable/add_photo.xml" value="0.3078125" />
+        <entry key="..\:/Users/jokip/AndroidStudioProjects/MemeGram/app/src/main/res/drawable/logout_icon.xml" value="0.3078125" />
         <entry key="..\:/Users/jokip/AndroidStudioProjects/MemeGram/app/src/main/res/layout/activity_home.xml" value="0.4244791666666667" />
         <entry key="..\:/Users/jokip/AndroidStudioProjects/MemeGram/app/src/main/res/layout/activity_login.xml" value="0.20643363728470113" />
+        <entry key="..\:/Users/jokip/AndroidStudioProjects/MemeGram/app/src/main/res/layout/activity_main.xml" value="0.2916666666666667" />
+        <entry key="..\:/Users/jokip/AndroidStudioProjects/MemeGram/app/src/main/res/layout/activity_single_post.xml" value="0.2916666666666667" />
+        <entry key="..\:/Users/jokip/AndroidStudioProjects/MemeGram/app/src/main/res/layout/fragment_home.xml" value="0.2916666666666667" />
+        <entry key="..\:/Users/jokip/AndroidStudioProjects/MemeGram/app/src/main/res/layout/fragment_profile.xml" value="0.2916666666666667" />
+        <entry key="..\:/Users/jokip/AndroidStudioProjects/MemeGram/app/src/main/res/layout/fragment_search.xml" value="0.2916666666666667" />
+        <entry key="..\:/Users/jokip/AndroidStudioProjects/MemeGram/app/src/main/res/layout/meme_post.xml" value="0.2916666666666667" />
       </map>
     </option>
   </component>
